@@ -1,0 +1,17 @@
+extends ../layouts/main-layout.pug
+
+include ../mixins/createProduct.pug 
+
+block content
+  .row.mt-4
+    .col-md-3.container
+      //- include ../includes/menu.pug
+    .col-md-9
+      .row
+        if products.length > 0
+          each product in products
+            +createProduct(product)
+        else
+          .container-fluid
+            h1(style="text-align: center") Ürün Yok
+  .mb-4

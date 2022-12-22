@@ -1,0 +1,38 @@
+extends ../layouts/main-layout.pug
+
+block styles
+  link(rel="stylesheet" href="/css/forms.css")
+
+block content
+  form.container.mt-4(action='/admin/add-product', method='POST', style="margin-top:1rem")
+    .form-group.row
+      label.col-sm-2.col-form-label(for='name') İsim
+      .col-sm-10
+        input#name.form-control(type='text', name='name')
+
+    .form-group.row
+      label.col-sm-2.col-form-label(for='price') Fiyat
+      .col-sm-10
+        input#price.form-control(type='text', name='price')
+
+    .form-group.row
+      label.col-sm-2.col-form-label(for='image') Resim
+      .col-sm-10
+        input#image.form-control(type='text', name='image')
+
+    //- .form-group.row
+    //-   label.col-sm-2.col-form-label(for='categoryid') Kategori
+    //-   .col-sm-10
+    //-     each category in categories
+    //-       input(type="checkbox" name="categoryids" value=`${category._id}`)
+    //-       | #{category.name}
+
+    .form-group.row
+      label.col-sm-2.col-form-label(for='description') Açıklama
+      .col-sm-10
+        input#description.form-control(type='text', name='description')
+
+    .form-group.row
+      .sol-sm-10.offset-sm-2
+         input.btn.btn-primary(type='submit', value='Kaydet')
+  .mb-4

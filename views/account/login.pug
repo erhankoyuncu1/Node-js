@@ -1,0 +1,22 @@
+extends ../layouts/main-layout.pug
+
+block styles
+  link(rel="stylesheet" href="/css/forms.css")
+
+block content
+    .container
+        form.container.mt-4(action='/login', method='POST', style="margin-top:1rem")
+            .form-group.row
+            label.col-sm-2.col-form-label(for='name') Email
+            .col-sm-10
+                input#e-mail.form-control(type='text', name='email')
+
+            .form-group.row
+            label.col-sm-2.col-form-label(for='price') Şifre
+            .col-sm-10
+                input#password.form-control(type='text', name='password')
+
+            .form-group.row
+            .sol-sm-10.offset-sm-2
+                input.btn.btn-primary.float-left(type='submit', value='Giriş')
+        .mb-4

@@ -1,0 +1,47 @@
+extends ../layouts/main-layout.pug
+
+include ../mixins/createProduct.pug 
+
+block content
+  if(action !=='undefined' && action =='delete')
+    div.alert.alert-danger.mt-4 Ürün Silindi.
+  .row.mt-4.container-fluid
+    if products.length > 0
+      table.table.table-bordered 
+        thead
+          tr
+            th Resim 
+            th Ürün İsim
+            th Adet
+            th Fiyat
+            th
+        tbody
+          each product in products
+            tr
+              td
+                img(src=`/image/${product.image}` width='80px')
+              td #{product.name}
+              td #{product.quantity} adet
+              td #{product.price} TL
+              td
+                form.mt-4(action='/delete-cartitem' method='POST')
+                  input(type='hidden' name='productid' value=`${product._id}`)
+                  button(type='submit').btn-fluid.btn-danger.btn-sm Ürünü Kaldır  
+
+      .row
+        - var total = 0;
+          each product in products
+            - total += (product.price * product.quantity)
+        p.ml-4(style="font-weight:bold; color: darkgreen; border: solid 2px black; border-radius: 5px; padding: 4px") Toplam: #{total} TL
+        form(action="/" method="GET")
+          button.ml-4.btn.btn-warning(style="font-weight:bold; color: white; border: solid 2px black;  border-radius: 10px" type="submit") Alışverişe Dön
+        form(action="/create-order" method="POST")
+          button.ml-4.btn.btn-success(style="font-weight:bold; color: white; border: solid 2px black;  border-radius: 10px" type="submit") Alışverişi Tamamla
+
+    else
+      .container-fluid
+        h1(style="text-align: center") Ürün Yok
+      .container.mt-4(style="align-items: center")
+        form(action="/" method="GET")
+          button.btn.btn-primary.align-center(style="font-weight:bold; color: white; border: solid 2px black;  border-radius: 10px" type="submit") Alışverişe Dön
+    .mb-4

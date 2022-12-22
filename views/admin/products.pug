@@ -1,0 +1,38 @@
+extends ../layouts/main-layout.pug
+
+include ../mixins/createProduct.pug 
+
+block content
+  if(action !=='undefined' && action ==='edit')
+    div.alert.alert-success.mt-4 Ürün Güncellendi.
+  if(action !=='undefined' && action ==='delete')
+    div.alert.alert-danger.mt-4 Ürün Silindi.
+  .row.mt-4.container-fluid
+    if products.length > 0
+      table.table.table-bordered 
+        thead
+          tr
+            th Resim 
+            th Ürün İsim 
+            th Fiyat
+            th Açıklama
+            th Kullanıcı
+            th
+        tbody
+          each product in products
+            tr
+              td
+                img(src=`/image/${product.image}` width='80')
+              td #{product.name}
+              td #{product.price} TL
+              td #{product.description}
+              td #{product.userId.name}
+              td
+                a.btn.btn-warning.btn.sm(href=`/admin/detail-product/${product._id}`) Detaylar
+                a.btn.btn-primary.btn.sm.ml-4(href=`/admin/edit-product/${product._id}`) Düzenle
+                form(action='/admin/delete-product' method='POST')
+                  input(type='hidden' name='productid' value=`${product._id}`)
+                  button(type='submit').btn.btn-danger.btn-sm.ml-4 Sil
+    else
+      h1 Ürün Yok
+    .mb-4

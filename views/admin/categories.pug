@@ -1,0 +1,32 @@
+extends ../layouts/main-layout.pug
+
+include ../mixins/createProduct.pug 
+
+block content
+  if(action !=='undefined' && action ==='edit')
+    div.alert.alert-success.mt-4 Kategori Güncellendi.
+  if(action !=='undefined' && action ==='delete')
+    div.alert.alert-danger.mt-4 Kategori Silindi.
+  .row.mt-4.container-fluid
+    if categories.length > 0
+      table.table.table-bordered.text-center.container
+        thead
+          tr
+            th Kategori İsim
+            th Açıklama
+            th
+        tbody
+          each category in categories
+            tr
+              td 
+                a(href=`/categories/${category._id}` style="color: black") #{category.name}
+              td #{category.description}
+              td
+                a.btn.btn-outline-primary.btn.sm(href=`/admin/edit-category/${category._id}`) Düzenle
+                hr
+                form(action='/admin/delete-category' method='POST')
+                  input(type='hidden' name='categoryid' value=`${category._id}`)
+                  button(type='submit').btn.btn-outline-danger.btn-sm Sil
+    else
+      h1 Kategori Yok
+    .mb-4

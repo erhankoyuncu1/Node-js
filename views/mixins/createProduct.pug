@@ -1,0 +1,16 @@
+mixin createProduct(product)
+  .col-4.mt-3
+    .card.text-center
+      img.card-img-top(src=`/image/${product.image}` style="width: 100%; height: 250px" alt='')
+      .card-body
+        h4
+          a(href=`/products/${product.id}`) #{product.name}
+        .div.mt-2.text-center(style="color: darkgreen; font-weight: bold;")
+          i.fa.fa-try
+          |  #{product.price}
+      .card-footer.text-center
+        a.btn.btn-outline-warning.btn-sm(href=`/products/${product._id}`)
+          i.fa.fa-angle-double-right  Detaylar
+        form.mt-2(action='/cart' method='POST')
+          input(type='hidden' name='productId' value=`${product._id}`)
+          button(type='submit').btn.btn-outline-success.btn-sm.ml-3 Sepet'e Ekle

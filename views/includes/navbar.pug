@@ -1,0 +1,37 @@
+nav.navbar.navbar-expand-sm.navbar-dark.bg-primary
+  a.navbar-brand(href='#') E-Ticaret
+  button.navbar-toggler.d-lg-none(type='button', data-toggle='collapse', data-target='#collapsibleNavId', aria-controls='collapsibleNavId', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #collapsibleNavId.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto.mt-2.mt-lg-0.mr-auto
+      li.nav-item
+        a(href='/', class=(path === '/'?'nav-link active':'nav-link')) Ana Sayfa
+      li.nav-item
+        a(href='/products', class=(path === '/products'?'nav-link active':'nav-link')) Ürünler
+
+      if isAuthenticated
+        li.nav-item
+          a(href='/cart', class=(path === '/cart'?'nav-link active':'nav-link')) Sepet
+        li.nav-item
+          a(href='/orders', class=(path === '/orders'?'nav-link active':'nav-link')) Siparişler
+        li.nav-item
+          a(href='/admin/add-product', class=(path === '/admin/add-product'?'nav-link active':'nav-link')) Ürün Ekle
+        li.nav-item
+          a(href='/admin/products', class=(path === '/admin/products'?'nav-link active':'nav-link')) Admin  Ürünler
+        li.nav-item
+          a(href='/admin/add-category', class=(path === '/admin/category'?'nav-link active':'nav-link')) Kategori Ekle
+        li.nav-item
+          a(href='/admin/categories', class=(path === '/admin/categories'?'nav-link active':'nav-link')) Kategoriler
+    form.form-inline.my-2.my-lg-0
+      input.form-control.mr-sm-2(type='text', placeholder='Arama...')
+      button.btn.btn-outline-warning.my-2.my-sm-0(type='submit') Ara
+    if isAuthenticated
+      ul.navbar-nav.mr-auto.mt-2.mt-lg-0.ml-auto
+        li.nav-item
+          a.nav-link(href='/login') Çıkış
+    else
+      ul.navbar-nav.mr-auto.mt-2.mt-lg-0.ml-auto
+        li.nav-item
+          a.nav-link(href='/login') Giriş
+        li.nav-item
+          a.nav-link(href='/register') Kayıt
