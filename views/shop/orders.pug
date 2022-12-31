@@ -3,8 +3,8 @@ extends ../layouts/main-layout.pug
 block content
     if orders.length > 0
         each order in orders
-            .card.mb-5.container
-                .card-header Başlık
+            .card.mb-3.container.mt-2
+                .card-header 
                 table.table
                     thead
                         tr
@@ -13,20 +13,22 @@ block content
                             th Adet
                             th Fiyat
                     tbody
-                        each product in order.items
+                        each item in order.items
                             tr
                                 td
-                                    img(src=`/image/${product.image}` width="80px")
-                                td #{product.name}
-                                td #{product.quantity}
-                                td #{product.price}
+                                    img(src=`/image/${item.product.image}` width="80px")
+                                td #{item.product.name}
+                                td #{item.quantity}
+                                td #{item.product.price}
                     tfoot
                         tr
                             td(colspan="2") #{order.date}
                             td
                             -var total = 0;
-                            each product in order.items
-                                -total += (product.price * product.quantity)
-                            td Toplam: #{total} Tl
+                            each item in order.items
+                                -total += (item.product.price * item.quantity)
+                            td(style="color: green; font-weight: bold") Toplam: #{total} TL
     else
-        h1 Sipariş Yok
+        .container(style="text-align: center; margin-top: 10%")
+            h2(style="padding-bottom: 5%") Sipariş Yok
+            a.btn.btn-outline-primary.align-center(href="/" style="border-radius: 10px") Alışverişe Dön

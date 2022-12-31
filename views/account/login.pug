@@ -4,19 +4,26 @@ block styles
   link(rel="stylesheet" href="/css/forms.css")
 
 block content
-    .container
+    .container.fluid.items-center.mt-4.mr-4
+        if errorMessage
+            div.alert.alert-danger.col-sm-8.text-center #{errorMessage}
         form.container.mt-4(action='/login', method='POST', style="margin-top:1rem")
             .form-group.row
-            label.col-sm-2.col-form-label(for='name') Email
-            .col-sm-10
-                input#e-mail.form-control(type='text', name='email')
+                label.col-sm-2.col-form-label(for='name') Email :
+                .col-sm-6
+                    input#e-mail.form-control(type='text', name='email')
 
             .form-group.row
-            label.col-sm-2.col-form-label(for='price') Şifre
-            .col-sm-10
-                input#password.form-control(type='text', name='password')
+                label.col-sm-2.col-form-label(for='password') Şifre :
+                .col-sm-6
+                    input#password.form-control(type='password', name='password')
 
-            .form-group.row
-            .sol-sm-10.offset-sm-2
-                input.btn.btn-primary.float-left(type='submit', value='Giriş')
+            .form-group.row.text-center
+                .col-6-sm-10.offset-sm-2
+                    input.btn.btn-outline-success.ml-3(type='submit', value=' Giriş ')
+                .div.row.col-6
+                    .col-3-sm-4.offset-sm-2.ml-4
+                        a(style="color: red" href="/reset-password").btn.btn-link.p-0 Şifremi unuttum
+                    .col-3-sm-4.offset-sm-2.ml-4
+                        a(style="color: darkblue" href="/register").btn.btn-link.p-0 Kayıt Ol
         .mb-4

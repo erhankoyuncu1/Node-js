@@ -2,5 +2,5 @@
     h3.mt-2 Kategoriler
     .list-group.mt-2
         if categories.length > 0 
-            each category in categories 
-                a.mb-2(href=`/categories/${category._id}`, class=(path === `/categories/${category._id}`?' active':'')).list-group-item #{category.name}
+            each category in categories
+                a.mb-2(href=`/categories/${category._id}`, class=(path === `/categories/${category._id}`?' active':''), style="background-color: #DBDBDB;color: black").list-group-item #{category.name}

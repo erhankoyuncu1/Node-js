@@ -4,10 +4,9 @@ include ../mixins/createProduct.pug
 
 block content
   .row
-    .col-3
-      .container
-        //- include ../includes/menu.pug
-    .col-9
+    .col-3.container(style="position: fixed; top: 50px; right: 10px;")
+        include ../includes/menu.pug
+    .col-9(style="margin-left: 1rem")
       .contianer(style="width: 50%")
         include ../includes/slider.pug
       .row.mt-4

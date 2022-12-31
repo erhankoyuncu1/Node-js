@@ -1,0 +1,34 @@
+extends ../layouts/main-layout.pug
+
+block styles
+  link(rel="stylesheet" href="/css/forms.css")
+
+block content
+  form.container.mt-4(action='/admin/edit-user', method='POST')
+
+    input(type="hidden" name="id" value=`${user._id}`)
+
+    .form-group.row
+      label.col-sm-2.col-form-label(for='name') İsim
+      .col-sm-10
+        input#name.form-control(type='text' value=`${user.name}` name='name')
+    
+    .form-group.row
+      label.col-sm-2.col-form-label(for='email') E mail
+      .col-sm-10
+        input#email.form-control(type='text' value=`${user.email}` name='email')
+    
+    .form-group.row
+      label.col-sm-2.col-form-label(for='phone') Telefon
+      .col-sm-10
+        input#phone.form-control(type='text' value=`${user.phone}` name='phone')
+
+    .form-group.row
+      label.col-sm-2.col-form-label(for='address') Adres
+      .col-sm-10
+        input#address.form-control(type='text' value=`${user.address}` name='address')
+
+    .form-group.row
+      .sol-sm-10.offset-sm-2
+         input.btn.btn-warning.ml-3(type='submit', value='Kaydet')
+  .mb-4

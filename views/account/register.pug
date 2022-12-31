@@ -4,23 +4,31 @@ block styles
   link(rel="stylesheet" href="/css/forms.css")
 
 block content
-  form.container.mt-4(action='/register', method='POST', style="margin-top:1rem")
-    .form-group.row
-      label.col-sm-2.col-form-label(for='name') İsim Soyisim
-      .col-sm-10
-        input#name.form-control(type='text', name='name')
-    
-    .form-group.row
-      label.col-sm-2.col-form-label(for='name') Email
-      .col-sm-10
-        input#e-mail.form-control(type='text', name='email')
+  .container.mt-4.mr-4
+    if errorMessage
+      div.alert.alert-danger.col-sm-6(style="margin-left: 17%") #{errorMessage}
+    form.container.mt-4(action='/register', method='POST', style="margin-top:1rem")
+      .form-group.row
+        label.col-sm-2.col-form-label(for='name') İsim:
+        .col-sm-6
+          input#name.form-control(type='text', name='name')
+      
+      .form-group.row
+        label.col-sm-2.col-form-label(for='name') Telefon:
+        .col-sm-6
+          input#phone.form-control(type='text', name='phone')
+      
+      .form-group.row
+        label.col-sm-2.col-form-label(for='name') Email:
+        .col-sm-6
+          input#e-mail.form-control(type='text', name='email')
 
-    .form-group.row
-      label.col-sm-2.col-form-label(for='price') Şifre
-      .col-sm-10
-        input#password.form-control(type='text', name='password')
-
-    .form-group.row
-      .sol-sm-10.offset-sm-2
-         input.btn.btn-primary(type='submit', value='Kayıt Ol')
-  .mb-4
+      .form-group.row
+        label.col-sm-2.col-form-label(for='price') Şifre:
+        .col-sm-6
+          input#password.form-control(type='password', name='password')
+      
+      .form-group.row
+        .col-sm-6.offset-sm-2
+          input.btn.btn-outline-success(type='submit', value='Kayıt Ol')
+    .mb-4

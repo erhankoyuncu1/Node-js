@@ -5,7 +5,7 @@ include ../mixins/createProduct.pug
 block content
   if(action !=='undefined' && action =='delete')
     div.alert.alert-danger.mt-4 Ürün Silindi.
-  .row.mt-4.container-fluid
+  .row.mt-4.container-fluid(style="margin:auto")
     if products.length > 0
       table.table.table-bordered 
         thead
@@ -29,19 +29,17 @@ block content
                   button(type='submit').btn-fluid.btn-danger.btn-sm Ürünü Kaldır  
 
       .row
+        form(action="/" method="GET")
+          button.ml-4.btn.btn-warning(style="font-weight:bold; color: white; border: solid 2px black;  border-radius: 10px" type="submit") Alışverişe Dön
         - var total = 0;
           each product in products
             - total += (product.price * product.quantity)
         p.ml-4(style="font-weight:bold; color: darkgreen; border: solid 2px black; border-radius: 5px; padding: 4px") Toplam: #{total} TL
-        form(action="/" method="GET")
-          button.ml-4.btn.btn-warning(style="font-weight:bold; color: white; border: solid 2px black;  border-radius: 10px" type="submit") Alışverişe Dön
         form(action="/create-order" method="POST")
           button.ml-4.btn.btn-success(style="font-weight:bold; color: white; border: solid 2px black;  border-radius: 10px" type="submit") Alışverişi Tamamla
 
     else
-      .container-fluid
-        h1(style="text-align: center") Ürün Yok
-      .container.mt-4(style="align-items: center")
-        form(action="/" method="GET")
-          button.btn.btn-primary.align-center(style="font-weight:bold; color: white; border: solid 2px black;  border-radius: 10px" type="submit") Alışverişe Dön
+      .container(style="text-align: center; margin-top: 10%")
+        h2(style="padding-bottom: 5%") Ürün Yok
+        a.btn.btn-outline-primary.align-center(href="/" style="border-radius: 10px") Alışverişe Dön
     .mb-4

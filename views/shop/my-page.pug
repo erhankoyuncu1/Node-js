@@ -1,0 +1,25 @@
+extends ../layouts/main-layout.pug
+
+block content
+    if(action !=='undefined' && action ==='edit')
+        div.container.alert.alert-success.mt-4.text-center(style="margin: auto") Kullanıcı Güncellendi
+    .row.mt-4
+        .col-6.container.text-center
+            .h2 Bilgilerim
+            hr
+            .container.ml-2(style =" font-size: 18px")
+                p İsim: #{user.name}
+                p Telefon: #{user.phone}
+                p Adres: #{user.address}
+                p E-posta: #{user.email}
+                p Şifrem: #{user.password}
+            hr
+            .container.text-center
+                form.mt-2(action='/edit-info' method='GET')
+                    input(type='hidden' name='userid' value=`${user._id}`)
+                    button(type='submit').btn.btn-outline-warning.ml-3 Güncelle
+                
+                form.mt-2(action='/delete-account' method='POST')
+                    input(type='hidden' name='userid' value=`${user._id}`)
+                    button(type='submit').btn.btn-outline-danger.ml-3 Hesabımı Sil
+    .mb-4

@@ -1,0 +1,38 @@
+extends ../layouts/main-layout.pug
+
+block content
+    if orders.length > 0
+        each order in orders
+            .card.mb-3.container.mt-2
+                .card-header.row.bg-dark(style="color:white;")
+                    h4 #{order.user.name}
+                    p.font-weight-bold.ml-4 e-mail: #{order.user.email}
+                    p.ml-4 Adres: #{order.user.address}
+                table.table
+                    thead
+                        tr
+                            th Resim
+                            th Ürün Ad 
+                            th Adet
+                            th Fiyat
+                    tbody
+                        each item in order.items
+                            tr
+                                td
+                                    img(src=`/image/${item.product.image}` width="80px")
+                                td #{item.product.name}
+                                td #{item.quantity}
+                                td #{item.product.price}
+                    tfoot
+                        tr
+                            td(colspan="2") #{order.date}
+                            td
+                            -var total = 0;
+                            each item in order.items
+                                -total += (item.product.price * item.quantity)
+                            td(style="color: green; font-weight: bold") Toplam: #{total} TL
+            hr
+    else
+        .container(style="text-align: center; margin-top: 10%")
+            h2(style="padding-bottom: 5%") Sipariş Yok
+            

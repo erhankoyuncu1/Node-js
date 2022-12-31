@@ -4,18 +4,21 @@ block styles
   link(rel="stylesheet" href="/css/forms.css")
 
 block content
-  form.container.mt-4(action='/admin/add-category', method='POST', style="margin-top:1rem")
-    .form-group.row
-      label.col-sm-2.col-form-label(for='name') İsim
-      .col-sm-10
-        input#name.form-control(type='text', name='name')
+  .container.text-center(style="margin:auto")
+    if errorMessage
+              div.alert.alert-danger.col-sm-6 #{errorMessage}
+    form.mt-4(action='/admin/add-category', method='POST', style="margin-top:1rem")
+      .form-group.row
+        label.col-sm-2.col-form-label(for='name') İsim
+        .col-sm-4
+          input#name.form-control(type='text', name='name')
 
-    .form-group.row
-      label.col-sm-2.col-form-label(for='description') Açıklama
-      .col-sm-10
-        input#description.form-control(type='text', name='description')
+      .form-group.row
+        label.col-sm-2.col-form-label(for='description') Açıklama
+        .col-sm-4
+          input#description.form-control(type='text', name='description')
 
-    .form-group.row
-      .sol-sm-10.offset-sm-2
-         input.btn.btn-primary(type='submit', value='Kaydet')
-  .mb-4
+      .form-group.row
+        .sol-sm-10.offset-sm-2
+          input.btn.btn-primary(type='submit', value='Kaydet')
+    .mb-4

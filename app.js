@@ -4,7 +4,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+
 const mongoDbStore = require('connect-mongodb-session')(session);
+
+require('dotenv').config()
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -27,17 +30,6 @@ var store = new mongoDbStore({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use((req, res, next) => {
-    User.findOne({name: 'yusuf'})
-        .then(user => {
-            req.user = user;
-            next();             
-        })
-        .catch(err => console.log(err));
-
-})
-
 app.use(cookieParser());
 
 app.use(session({
@@ -45,40 +37,42 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 3600000
+        maxAge: 72000000
     },
     store: store
 }))
+
+app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then(user => {
+      if (!user) {
+        return next();
+      }
+      req.user = user;
+      next();
+    })
+    .catch(err => console.log(err));
+});
 
 // routes
 app.use('/admin', adminRoutes);
 app.use(userRoutes);
 app.use(accountRoutes);
 
+const isAuthenticated = require('./middleware/isAuthenticated');
+const isAdmin = require('./middleware/isAdmin');
 
-app.use(errorController.get404Page);
+app.use(isAdmin, isAuthenticated, errorController.get404Page);
 
-mongoose.connect('mongodb://localhost/node-app')
+const port = process.env.PORT;
+const url = process.env.DB_CONNECTION_STRING;
+
+mongoose.connect(url)
     .then(() => { 
         console.log('Mongodb bağlanıldı');
-        
-        User.findOne({name: 'erhan'})
-            .then(user => {
-                if(!user){
-                    user = new User({
-                        name: 'erhan',
-                        email: 'erhan@gmail.com',
-                        password: '1234',
-                        cart: {
-                            items: []
-                        }
-                    });
-                    return user.save();
-                }
-                return user;
-            })
-            .then(user => {
-                console.log(user);
-                app.listen(3000);
-            })
+        app.listen(port);
     })
+    .catch(err => console.log(err));

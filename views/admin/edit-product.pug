@@ -23,12 +23,12 @@ block content
       .col-sm-10
         input#imageUrl.form-control(type='text' value=`${product.image}` name='imageUrl')
     
-    //- .form-group.row
-    //-   label.col-sm-2.col-form-label(for='categoryid') Kategori
-    //-   .col-sm-10
-    //-     each category in categories
-    //-       input(type="checkbox" name="categoryids" value=`${category._id}` checked = category.selected)
-    //-       | #{category.name} 
+    .form-group.row
+      label.col-sm-2.col-form-label(for='categoryid') Kategori
+      .col-sm-10
+        each category in categories
+          input(type="checkbox" name="categoryids" value=`${category._id}` checked = category.selected)
+          | #{category.name} 
 
     .form-group.row
       label.col-sm-2.col-form-label(for='description') Açıklama

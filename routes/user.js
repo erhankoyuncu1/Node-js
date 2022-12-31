@@ -1,24 +1,45 @@
 const express = require('express');
 const router = express.Router();
 
+const authentication= require('../middleware/authentication');
+
 const shopController = require('../controllers/shop');
 
-router.get('/', shopController.getIndex);
+const isAuthenticated = require('../middleware/isAuthenticated');
 
-router.get('/products', shopController.getProducts);
+const isAdmin = require('../middleware/isAdmin');
 
-router.get('/products/:productid', shopController.getProduct);
+router.get('/', isAdmin, isAuthenticated, shopController.getIndex);
 
-router.get('/categories/:categoryid', shopController.getproductsByCategoryId);
+router.get('/products', isAdmin, isAuthenticated, shopController.getProducts);
 
-router.get('/cart', shopController.getCart);
+router.get('/products/:productid', isAdmin, isAuthenticated, shopController.getProduct);
 
-router.post('/cart', shopController.postCart);
+router.get('/categories/:categoryid', isAdmin, isAuthenticated, shopController.getproductsByCategoryId);
 
-router.post('/delete-cartitem', shopController.postCartItemDelete);
+router.get('/my-products', isAdmin, isAuthenticated,authentication, shopController.getMyProducts);
 
-router.get('/orders', shopController.getOrders);
+router.get('/add-product', isAdmin, isAuthenticated,authentication, shopController.getAddProducts);
 
-router.post('/create-order', shopController.postOrder);
+router.post('/add-product', isAdmin, isAuthenticated,authentication, shopController.postAddProduct);
+
+router.get('/cart', isAdmin, isAuthenticated, authentication, shopController.getCart);
+
+router.post('/cart', isAdmin, isAuthenticated, authentication, shopController.postCart);
+
+router.post('/delete-cartitem', isAdmin, isAuthenticated, authentication, shopController.postCartItemDelete);
+
+router.get('/orders', isAdmin, isAuthenticated, authentication, shopController.getOrders);
+
+router.post('/create-order', isAdmin, isAuthenticated, authentication, shopController.postOrder);
+
+//account
+router.get('/my-page', isAdmin, isAuthenticated, authentication, shopController.getInfo);
+
+router.get('/edit-info', isAdmin, isAuthenticated, authentication, shopController.getEditInfo);
+
+router.post('/edit-info',authentication, shopController.postEditInfo);
+
+router.post('/delete-account', isAuthenticated, authentication, shopController.postDeleteMyAccount);
 
 module.exports = router;

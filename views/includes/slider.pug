@@ -1,12 +1,13 @@
-#mySlider.carousel.slide(data-ride='carousel')
-      .carousel-inner
-        .carousel-item.active
-          img.d-block.w-100(src='/image/slide1.jpg', alt='First slide')
-        .carousel-item
-          img.d-block.w-100(src='/image/slide2.jpg', alt='Second slide')
-        .carousel-item
-          img.d-block.w-100(src='/image/slide3.jpg', alt='Third slide')
-      a.carousel-control-prev(href='#mySlider', role='button', data-slide='prev')
-        span.carousel-control-prev-icon(aria-hidden='true')
-      a.carousel-control-next(href='#mySlider', role='button', data-slide='next')
-        span.carousel-control-next-icon(aria-hidden='true')
+.container.mt-1(style="margin-left:10%")
+  #mySlider.carousel.slide(data-ride='carousel')
+        .carousel-inner
+          .carousel-item.active
+            img.d-block(src='/image/macBookPro.jpg', alt='First slide')
+          .carousel-item
+            img.d-block(src='/image/casper.jpg', alt='Second slide')
+          .carousel-item
+            img.d-block(src='/image/microsoftSurfacePro.jpg', alt='Third slide')
+        a.carousel-control-prev(href='#mySlider', role='button', data-slide='prev' style="color: black")
+          span.carousel-control-prev-icon(aria-hidden='true')
+        a.carousel-control-next(href='#mySlider', role='button', data-slide='next' style="color: black")
+          span.carousel-control-next-icon(aria-hidden='true')
