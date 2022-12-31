@@ -15,6 +15,6 @@
   },
   "scripts": {
     "start": "nodemon app.js",
-    "start:dev": "live-server index.html"
+    "start:dev": "live-server index.pug"
   }
 }
