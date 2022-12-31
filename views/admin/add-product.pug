@@ -7,35 +7,36 @@ block content
   if errorMessage
     div.alert.alert-danger.col-sm-6.text-center(style="margin: auto") #{errorMessage}
   
-  form.container.mt-4(action='/admin/add-product', method='POST', style=" margin: auto")
-    .form-group.row
-      label.col-sm-2.col-form-label(for='name') İsim
-      .col-sm-6
-        input#name.form-control(type='text', name='name')
+  .container(style="top: 50%; left: 50%")
+    form.mt-4(action='/admin/add-product', method='POST')
+      .form-group.row
+        label.col-sm-2.col-form-label(for='name') İsim :
+        .col-sm-6
+          input#name.form-control(type='text', name='name')
 
-    .form-group.row
-      label.col-sm-2.col-form-label(for='price') Fiyat
-      .col-sm-6
-        input#price.form-control(type='text', name='price')
+      .form-group.row
+        label.col-sm-2.col-form-label(for='price') Fiyat :
+        .col-sm-6
+          input#price.form-control(type='text', name='price')
 
-    .form-group.row
-      label.col-sm-2.col-form-label(for='image') Resim
-      .col-sm-6
-        input#image.form-control(type='text', name='image')
+      .form-group.row
+        label.col-sm-2.col-form-label(for='image') Resim :
+        .col-sm-6
+          input#image.form-control(type='text', name='image')
 
-    .form-group.row
-      label.col-sm-2.col-form-label(for='categoryid') Kategori
-      .col-sm-6
-        each category in categories
-          input(type="checkbox" name="categoryids" value=`${category._id}`)
-          | #{category.name} 
+      .form-group.row
+        label.col-sm-2.col-form-label(for='categoryid') Kategori :
+        .col-sm-6
+          each category in categories
+            input(type="checkbox" name="categoryids" value=`${category._id}`)
+            | #{category.name} 
 
-    .form-group.row
-      label.col-sm-2.col-form-label(for='description') Açıklama
-      .col-sm-6
-        input#description.form-control(type='text', name='description')
+      .form-group.row
+        label.col-sm-2.col-form-label(for='description') Açıklama :
+        .col-sm-6
+          input#description.form-control(type='text', name='description')
 
-    .form-group.row
-      .sol-sm-6.offset-sm-2
-         input.btn.btn-primary(type='submit', value='Kaydet')
+      .form-group.row
+        .col-sm-6.offset-sm-2
+          input.btn.btn-outline-success(type='submit', value='Kaydet')
   .mb-4
