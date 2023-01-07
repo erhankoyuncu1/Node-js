@@ -5,10 +5,10 @@ block content
         each order in orders
             .card.mb-3.container.mt-2
                 .card-header.row.bg-dark(style="color:white;")
-                    h4 #{order.user.name}
+                    h4.font-weight-bold #{order.user.name}
                     p.font-weight-bold.ml-4 e-mail: #{order.user.email}
                     p.ml-4 Adres: #{order.user.address}
-                table.table
+                table.table.text-center
                     thead
                         tr
                             th Resim

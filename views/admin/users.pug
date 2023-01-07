@@ -20,17 +20,17 @@ block content
         tbody
           each user in users
             if(user._id != myId)
-                tr
-                td #{user.name}
-                td #{user.email}
-                td #{user.phone}
-                td #{user.address}
-                td
-                    .row.ml-2
-                    a.btn.btn-outline-warning.btn.sm.ml-4(href=`/admin/edit-user/${user._id}`) Düzenle
-                    form.float-left(action='/admin/delete-user' method='POST')
-                        input(type='hidden' name='userid' value=`${user._id}`)
-                        button(type='submit').btn.btn-outline-danger.btn-sm.ml-4 Sil
+                tr.mt-2
+                  td #{user.name}
+                  td #{user.email}
+                  td #{user.phone}
+                  td #{user.address}
+                  td
+                      .row.ml-2
+                      a.btn.btn-outline-warning.btn.sm.ml-4(href=`/admin/edit-user/${user._id}`) Düzenle
+                      form.float-left(action='/admin/delete-user' method='POST')
+                          input(type='hidden' name='userid' value=`${user._id}`)
+                          button(type='submit').btn.btn-outline-danger.btn-sm.ml-4 Sil
     else
       h1 Ürün Yok
     form.float-left(action='/admin/add-admin' method='GET')

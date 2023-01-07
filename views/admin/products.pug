@@ -3,10 +3,11 @@ extends ../layouts/main-layout.pug
 include ../mixins/createProduct.pug 
 
 block content
-  if(action !=='undefined' && action ==='edit')
-    div.container.alert.alert-success.mt-4.text-center(style="margin: auto") Ürün Güncellendi.
-  if(action !=='undefined' && action ==='delete')
-    div.alert.alert-danger.mt-4.text-center(style="margin: auto") Ürün Silindi.
+  .container
+    if(action !=='undefined' && action ==='edit')
+      div.container.alert.alert-success.mt-4.text-center(style="margin: auto") Ürün Güncellendi.
+    if(action !=='undefined' && action ==='delete')
+      div.alert.alert-danger.mt-4.text-center(style="margin: auto") Ürün Silindi.
   .row.mt-4.container.text-center(style="margin: auto")
     if products.length > 0
       table.table.table-bordered.text-center

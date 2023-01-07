@@ -4,11 +4,12 @@ block styles
   link(rel="stylesheet" href="/css/forms.css")
 
 block content
-  if errorMessage
-    div.alert.alert-danger.col-sm-6.text-center(style="margin: auto") #{errorMessage}
+  .container
+    if errorMessage
+      div.alert.alert-danger.col-sm-6.text-center(style="margin: auto") #{errorMessage}
   
-  .container(style="top: 50%; left: 50%")
-    form.mt-4(action='/admin/add-product', method='POST')
+  .container
+    form.mt-4(action='/admin/add-product', method='POST' style="margin-left: 25%")
       .form-group.row
         label.col-sm-2.col-form-label(for='name') İsim :
         .col-sm-6

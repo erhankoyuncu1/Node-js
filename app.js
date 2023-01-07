@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
 const mongoDbStore = require('connect-mongodb-session')(session);
-
 require('dotenv').config()
 
 app.set('view engine', 'pug');
